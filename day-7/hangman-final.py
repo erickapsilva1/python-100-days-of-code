@@ -1,26 +1,27 @@
 import random
 import hangman_art
 import hangman_words
+import os
 
 word_list = hangman_words.word_list
-
 stages = hangman_art.stages
-
 chosen_word = random.choice(word_list)
 lives = 5
+clear = lambda: os.system('clear')
 
 # Create blanks
 secret = []
 for l in chosen_word:
     secret += '_'
 
+clear()
 print(hangman_art.logo)
-print(f'The solution is {chosen_word}')
 print(secret)
 
 while True:
     guess = input('Guess a letter: ').lower()
-    
+    clear()
+
     if guess in secret:
         print(f"You've already guessed {guess}!")
     
