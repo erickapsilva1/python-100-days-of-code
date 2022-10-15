@@ -11,9 +11,9 @@ def encrypty(text, shift):
         letter_index = alphabet.index(l)
         
         new_letter = letter_index + shift
-
+        
         if new_letter > 25:
-            letter_position = len(alphabet) - letter_index
+            letter_position = new_letter - len(alphabet)
             new_letter = alphabet[letter_position]
         else:
             new_letter = alphabet[letter_index + shift]
