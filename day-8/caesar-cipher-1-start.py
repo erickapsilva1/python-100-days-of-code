@@ -22,4 +22,27 @@ def encrypty(text, shift):
     
     print(cipher_text)
 
-encrypty(text, shift)
+
+def decrypt(text, shift):
+    cipher_text = ''
+
+    for l in text:
+        letter_index = alphabet.index(l)
+
+        new_letter = letter_index - shift
+
+        if new_letter > 25:
+            letter_position = new_letter - len(alphabet)
+            new_letter = alphabet[letter_position]
+        else:
+            new_letter = alphabet[letter_index - shift]
+
+        cipher_text += new_letter
+
+    print(cipher_text)
+
+if direction == 'encode':
+    encrypty(text, shift)
+elif direction == 'decode':
+    decrypt(text, shift)
+
