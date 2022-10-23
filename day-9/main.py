@@ -7,31 +7,26 @@ clear()
 print(logo)
 print('Welcome to the secret auction program.')
 
-continue_auction = True
-auction = []
+bids = {}
+bidding_finished = False
 
-while continue_auction:
-    name = input('What is your name?: ')
-    bid = int(input("What's your bid?: $"))
-    
-    new_auction = {}
-    new_auction['name'] = name
-    new_auction['bid'] = bid
+def find_highest_bidder(bidding_record):
+    highest_bid = 0
+    for bidder in bidding_record:
+        bid_amount = bidding_record[bidder]
+        if bid_amount > highest_bid:
+            highest_bid = bid_amount
+            winner = bidder
+    print(f"The winner is {winner} with a bid of ${highest_bid}")
 
-    auction.append(new_auction)
+while not bidding_finished:
+    name = input('What is your name? ')
+    price = int(input('What is your bid? $'))
+    bids[name] = price
 
-    other_bidders = input("Are there any other bidders? Type 'yes' or 'no': ").lower()
-
-    if other_bidders == 'no':
-        continue_auction = False
-        max_bid_value = 0
-        winner = ''
-        for bid in auction:
-            if bid['bid'] > max_bid_value:
-                max_bid_value = bid['bid']
-                winner = bid['name']
-        print(f'The winner is {winner} with a bid of ${max_bid_value}.')
-    else:
+    should_continue = input("Are there any other bidders? Type 'yes' or 'no'.\n").lower()
+    if should_continue == 'no':
+        bidding_finished = True
+        find_highest_bidder(bids)
+    elif should_continue == 'yes':
         clear()
-    
-    
