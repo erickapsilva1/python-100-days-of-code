@@ -26,3 +26,15 @@ def drink_postion():
     print(player_health)
 
 drink_postion()
+
+# Modifying Global Scope
+
+ticker = 'PTR4'
+
+def change_ticker():
+    global ticker
+    ticker = 'B3SA'
+    print(f"Ticker inside function: {ticker}")
+
+change_ticker()
+print(f"Ticker outside function: {ticker}")
