@@ -13,17 +13,18 @@ def print_data(person_data, letter):
     description = person_data['description']
     country = person_data['country']
 
-    print(f"Compare {letter}: {name}, a {description}, from {country}. {follower_count}")
+    print(f"Compare {letter}: {name}, a {description}, from {country}.")
 
 def more_followers(data1, data2):
     if data1['follower_count'] > data2['follower_count']: return True
 
 user_score = 0
 wrong_answer = False
+person2 = choice(data)
 
 while True:
     clear()
-    person1 = choice(data)
+    person1 = person2
     person2 = choice(data)
     
     while person2 == person1:
