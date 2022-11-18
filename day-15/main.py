@@ -67,9 +67,13 @@ def check_resources(user_choice):
 
             if ingredient == resources_ingredient:
                 if amount > resources_amount:
-                    machine_resources += ingredient
+                    machine_resources += ingredient + ', '
                 else:
                     machine_resources += ''
+    
+    if len(machine_resources) > 2:
+        if machine_resources[-2:] == ", ":
+            machine_resources = machine_resources[:-2]
 
     return machine_resources    
 
@@ -97,26 +101,32 @@ while True:
 
     if user_choice == "report":
         print_report()
+
     else:
-        print("Please insert coins.")
-        quarters = int(input("How many quarters? "))
-        dimes = int(input("How many dimes? "))
-        nickles = int(input("How many nickles? "))
-        pennies = int(input("How many pennies? "))
-
-        amount = sum_coins(quarters, dimes, nickles, pennies)
-
-        change = calculate_change(user_choice, amount)
+        
         machine_resources = check_resources(user_choice)
 
         if machine_resources == '':
+
+            print("Please insert coins.")
+
+            quarters = int(input("How many quarters? "))
+            dimes = int(input("How many dimes? "))
+            nickles = int(input("How many nickles? "))
+            pennies = int(input("How many pennies? "))
+
+            amount = sum_coins(quarters, dimes, nickles, pennies)
+            change = calculate_change(user_choice, amount)
+
             if change < 0:
                 print("Insufficient balance.")
+
             else:
                 update_resources(user_choice)
                 profit += product_cost(user_choice)
                 print(f"Here's {change} in change.")
                 print(f"Here's is your {user_choice} ☕️. Enjoy!")
+
         else:
             print(f"Sorry there is not enough {machine_resources}.")
             
