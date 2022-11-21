@@ -1,10 +1,13 @@
 from question_model import Question
 from data import question_data
+from quiz_brain import QuizBrain
 
 question = []
-i = 0
 
 for line in question_data:
     question.append(Question(line["text"], line["answer"]))
 
-print(question[0].text)
+quiz = QuizBrain(question)
+
+while quiz.still_has_question():
+    quiz.next_question()
