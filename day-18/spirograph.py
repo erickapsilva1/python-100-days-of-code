@@ -6,7 +6,7 @@ tim = t.Turtle()
 screen = Screen()
 
 i = 0
-tim.speed(10)
+tim.speed(0)
 screen.colormode(255)
 tim.pensize(8)
 
@@ -19,8 +19,14 @@ def random_color():
     return rand_color
 
 
-while True:
-    tim.color(random_color())
-    tim.circle(80)
-    tim.setheading(i)
-    i += 10
+def draw_spirograph(size_of_grap):
+    for _ in range(int(360 / size_of_grap)):
+        tim.color(random_color())
+        tim.circle(80)
+        tim.setheading(tim.heading() + size_of_grap)
+
+
+draw_spirograph(5)
+
+screen = t.Screen()
+screen.exitonclick()
