@@ -1,2 +1,3 @@
 hi!hi!hi!file content.
 new file content.
+new file content.
