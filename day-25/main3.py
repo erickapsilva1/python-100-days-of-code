@@ -11,7 +11,7 @@ turtle.tracer(False)
 data = pandas.read_csv("50_states.csv")
 correct_guess = []
 
-us_states = data["state"]
+us_states = data.state.to_list()
 us_states_count = len(data["state"])
 
 title_phrase = "Guess the State"
@@ -19,9 +19,8 @@ title_phrase = "Guess the State"
 while not len(correct_guess) == us_states_count:
     answer_state = screen.textinput(title=title_phrase, prompt="What's another state's name?")
     answer_state = answer_state.title()
-    check = len(data[data["state"] == answer_state])
 
-    if check == 1:
+    if answer_state in us_states:
         correct_guess.append(answer_state)
         title_phrase = f'{len(correct_guess)}/{us_states_count} States Correct'
         coord = data[data['state'] == answer_state][['x', 'y']].values.flatten()
