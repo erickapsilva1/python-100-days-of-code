@@ -20,6 +20,16 @@ while not len(correct_guess) == us_states_count:
     answer_state = screen.textinput(title=title_phrase, prompt="What's another state's name?")
     answer_state = answer_state.title()
 
+    if answer_state == "Exit":
+        for item in correct_guess:
+            if item in us_states:
+                us_states.remove(item)
+
+        df = pandas.DataFrame(us_states)
+        df.to_csv("game_result.csv")
+
+        break
+
     if answer_state in us_states:
         correct_guess.append(answer_state)
         title_phrase = f'{len(correct_guess)}/{us_states_count} States Correct'
@@ -28,5 +38,6 @@ while not len(correct_guess) == us_states_count:
         turtle.setposition(coord)
         turtle.write(answer_state)
         turtle.setposition(0, 0)
+
 
 screen.exitonclick()
