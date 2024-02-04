@@ -66,6 +66,29 @@ def add():
     else:
         messagebox.showinfo(title="Ops", message="Please don't leave any field empty!")
 
+# ---------------------------- SAVE PASSWORD ------------------------------- #
+def find_password():
+    website = entry_website.get()
+    found = False
+
+    try:
+        with open("data.json", mode="r") as file:
+            data = json.load(file)
+
+    except FileNotFoundError:
+        messagebox.showerror(title="Oops", message="No Data File Found.")
+    else:
+        for key, value in data.items():
+            if key.lower() == website.lower():
+                messagebox.showinfo(title=f"Password Data - {website}",
+                                    message=f"Email: {value['email']}\n"
+                                            f"Password: {value['password']}")
+                found = True
+
+        if not found:
+            messagebox.showinfo(title="Oops", message="No details for the website exists.")
+
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -87,6 +110,9 @@ label_website.grid(column=0, row=1)
 entry_website = Entry()
 entry_website.grid(column=1, row=1, columnspan=2, sticky="EW")
 entry_website.focus()
+
+search_button = Button(text="Search", command=find_password)
+search_button.grid(column=2, row=1, sticky="EW")
 
 label_email_uname = Label(text="Email/Username:")
 label_email_uname.grid(column=0, row=2)
