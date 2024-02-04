@@ -153,3 +153,4 @@ dmypy.json
 cython_debug/
 /day-30/a_file.txt
 /day-29/data.txt
+/day-30/data.json
