@@ -157,3 +157,4 @@ cython_debug/
 /day-31/data/words_to_learn.csv
 /.idea/misc.xml
 /.idea/python-100-days-of-code.iml
+/temp/
