@@ -26,6 +26,5 @@ price_brl_cents = driver.find_element(By.CLASS_NAME, value="a-price-fraction")
 
 print(f"The price is {price_brl.text},{price_brl_cents.text}")
 
-#driver.close() # single tab
 driver.quit() # entire browser
 
